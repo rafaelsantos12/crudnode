@@ -14,15 +14,15 @@ export class CreateCategoryService {
         const repo = getRepository(Category);
 
 
-        //SELECT * FROM CATEGORIES WHARE NAME = NAME LIMIT 1 => Oq ue o if representa
+        //SELECT * FROM CATEGORIES WHARE NAME = "NAME" LIMIT 1 => Oq ue o if representa
         if ( await repo.findOne({name})) {
             return new Error("Category already exists");
         }
 
         const category = repo.create({
             name,
-            description
-        })
+            description,
+        });
         
         await repo.save(category);
 
